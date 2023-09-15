@@ -85,5 +85,12 @@ public class ListDemo
                 //staff.remove("Diana");
             }
         }
+        // ConcurrentModificationException again
+        /* An enhanced for loop AUTOMATICALLY creates an iterator! */
+        for (String n: staff) {
+            if(n.equals("Harry")) {
+                //staff.add("Charlie");
+            }
+        }
     }
 }
