@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Iterator;
 
 
 /**
@@ -13,7 +16,34 @@ public class Sieve
         int n = in.nextInt();
 
         // Your work goes here
-        . . .
+        Set <Integer> numbers = new HashSet<>(); 
+         
+        for(int x = 2; x <n+1; x++)
+        {
+            numbers.add(x); 
+        }
+        int size = numbers.size();
+
+        Iterator <Integer> iterator = numbers.iterator(); 
+        while(iterator.hasNext())
+        {
+            int num = iterator.next();
+            for(int divNum = 2; divNum < n+1; divNum++)
+            {
+                 
+                if (num%divNum==0 && num != divNum)
+                {
+                    iterator.remove();
+                    break;
+                }
+                
+            }
+        }
+        System.out.println(numbers);
+
+
+        
+      
 
 
 
