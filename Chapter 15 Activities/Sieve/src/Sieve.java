@@ -22,7 +22,6 @@ public class Sieve
         {
             numbers.add(x); 
         }
-        int size = numbers.size();
 
         Iterator <Integer> iterator = numbers.iterator(); 
         while(iterator.hasNext())
