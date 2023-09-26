@@ -69,16 +69,16 @@ public class SudokuSolver {
         for (int sqnum = 0; sqnum < N; sqnum++)
         {
             Set <Integer> currSquare = new HashSet<>();
-            for (int row = 0; row < 3; row++)
+            for (int col = 0; col < M; col++)
             {
-                for (int col = 0; col < 3; col++)
+                for (int row = 0; row < M; row++)
                 {
-                    if (sqnum < N/3)
-                        currSquare.add(grid[((sqnum % 3)* 3) + row][col]);
-                    else if (sqnum < N/3*2)
-                        currSquare.add(grid[((sqnum % 3)* 3) + row][col + 3]);
+                    if (sqnum < N/M)
+                        currSquare.add(grid[row][((sqnum % 3)* 3) + col]);
+                    else if (sqnum < N/M*2)
+                        currSquare.add(grid[3 + row][((sqnum % 3)*3) + col]);
                     else
-                        currSquare.add(grid[((sqnum % 3)* 3) + row][col + 6]);
+                        currSquare.add(grid[6 + row][((sqnum % 3)*3) + col]);
                 }
             }
             this.squares.add(currSquare);
@@ -135,8 +135,46 @@ public class SudokuSolver {
          */
         Set<Integer> possibleNums = new HashSet<Integer>();
         possibleNums.addAll(this.nums);
-        
-        // ...
+        /*
+        for (int i = 0; i < rows.get(nextRow).size(); i++)
+        {
+            if (cols.get(nextCol).contains(i))
+                possibleNums.remove(i);
+        }
+        */
+        possibleNums.removeAll(cols.get(nextCol));
+        possibleNums.removeAll(rows.get(nextRow));
+        int nextSquare = -1;
+
+        if (nextCol < N/M)
+        {
+            if (nextRow < N/M)
+                nextSquare = 0;
+            else if (nextRow < N/M*2)
+                nextSquare = 1;
+            else
+                nextSquare = 2;
+        }
+        else if (nextCol < N/M*2)
+        {
+            if (nextRow < N/M)
+                nextSquare = 3;
+            else if (nextRow < N/M*2)
+                nextSquare = 4;
+            else
+                nextSquare = 5;
+        }
+        else
+        {
+            if (nextRow < N/M)
+                nextSquare = 6;
+            else if (nextRow < N/M*2)
+                nextSquare = 7;
+            else
+                nextSquare = 8;
+        }
+        System.out.println("Curr Row:" + nextRow + "Curr Col; " + nextCol + "Curr Square; " + nextSquare);
+        possibleNums.removeAll(rows.get(nextSquare));
 
         // if there are no possible numbers, we cannot solve the board in its current state
         if (possibleNums.isEmpty()) {
@@ -146,7 +184,10 @@ public class SudokuSolver {
         // try each possible number
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
-            // ...
+            grid[nextRow][nextCol] = possibleNum;
+            rows.get(nextRow).add(possibleNum);
+            cols.get(nextCol).add(possibleNum);
+            squares.get(nextSquare).add(possibleNum);
 
             // recursively solve the board
             if (this.solve()) {
@@ -158,7 +199,10 @@ public class SudokuSolver {
                  element in the grid back to 0 and removing possibleNum from all three corresponding
                  sets.
                  */
-                // ...
+                grid[nextRow][nextCol] = 0;
+                rows.get(nextRow).remove(possibleNum);
+                cols.get(nextCol).remove(possibleNum);
+                squares.get(nextSquare).remove(possibleNum);
             }
         }
 
