@@ -173,7 +173,7 @@ public class SudokuSolver {
             else
                 nextSquare = 8;
         }
-        System.out.println("Curr Row:" + nextRow + "Curr Col; " + nextCol + "Curr Square; " + nextSquare);
+        System.out.println("Curr Row: " + nextRow + "   Curr Col: " + nextCol + "   Curr Square: " + nextSquare);
         possibleNums.removeAll(rows.get(nextSquare));
 
         // if there are no possible numbers, we cannot solve the board in its current state
