@@ -146,29 +146,29 @@ public class SudokuSolver {
         possibleNums.removeAll(rows.get(nextRow));
         int nextSquare = -1;
 
-        if (nextCol < N/M)
+        if (nextRow < N/M)
         {
-            if (nextRow < N/M)
+            if (nextCol < N/M)
                 nextSquare = 0;
-            else if (nextRow < N/M*2)
+            else if (nextCol < N/M*2)
                 nextSquare = 1;
             else
                 nextSquare = 2;
         }
-        else if (nextCol < N/M*2)
+        else if (nextRow < N/M*2)
         {
-            if (nextRow < N/M)
+            if (nextCol < N/M)
                 nextSquare = 3;
-            else if (nextRow < N/M*2)
+            else if (nextCol < N/M*2)
                 nextSquare = 4;
             else
                 nextSquare = 5;
         }
         else
         {
-            if (nextRow < N/M)
+            if (nextCol < N/M)
                 nextSquare = 6;
-            else if (nextRow < N/M*2)
+            else if (nextCol < N/M*2)
                 nextSquare = 7;
             else
                 nextSquare = 8;
