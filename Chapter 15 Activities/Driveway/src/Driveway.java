@@ -7,24 +7,15 @@ import java.util.Scanner;
 */
 public class Driveway
 {
-    /**
-      * Stack representing the cars in the driveway.
-    */
-    private Stack<Integer> driveway;
-    /**
-      * Stack representing the cars in the street.
-    */
-    private Stack<Integer> street;
 
-    /**
-      * Constructor.
-    */
+    //Stack representing the cars in the driveway.
+    private Stack<Integer> driveway;
+    //Stack representing the cars in the street.
+    private Stack<Integer> street;
     public Driveway()
     {
-        // Complete the constructor
-        ...
-
-
+      driveway = new Stack<Integer>();
+      street = new Stack<Integer>();
     }
 
     /**
@@ -34,10 +25,8 @@ public class Driveway
     */
     public void add(int licensePlate)
     {
-        // Complete this method
-        ...
-
-
+       driveway.push(licensePlate);
+       System.out.println("Added car with license plate " + licensePlate + " to the driveway.");
     }
 
     /**
@@ -47,24 +36,49 @@ public class Driveway
     */
     public void remove(int licensePlate)
     {
-        // Complete this method
-        ...
-
-
+      if (driveway.contains(licensePlate)) {
+        System.out.println("Removed car with license plate " + licensePlate + " from the driveway.");
+        Stack<Integer> temp = new Stack<Integer>();
+        while (!driveway.isEmpty() && driveway.peek() != licensePlate) {
+            temp.push(driveway.pop());
+        }
+        if (!driveway.isEmpty()) {
+            driveway.pop(); // Remove the requested car
+        }
+        while (!temp.isEmpty()) {
+            street.push(temp.pop());
+        }
+    } else if (street.contains(licensePlate)) {
+        System.out.println("Removed car with license plate " + licensePlate + " from the street.");
+        Stack<Integer> temp = new Stack<Integer>();
+        while (!street.isEmpty() && street.peek() != licensePlate) {
+            temp.push(street.pop());
+        }
+        if (!street.isEmpty()) {
+            street.pop(); // Remove the requested car
+        }
+        while (!temp.isEmpty()) {
+            street.push(temp.pop());
+        }
+    } else {
+        System.out.println("Car with license plate " + licensePlate + " not found.");
     }
+}
+  }
 
-    /**
-      * Prints the driveway and street details to the screen.
-    */
     public void print()
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
-        // Print the cars in the driveway here
-        ...
+        for (int i = 0; i < driveway.size(); i++) {
+          int license = driveway.pop();
+          System.out.println(license);
+      }
 
         System.out.println("In Street, starting at first in (one license plate per line):");
-        // Print the cars in the street here
-        ...
+        for (int i = 0; i < street.size(); i++) {
+          int license = street.pop();
+          System.out.println(license);
+        }
+      }
 
-    }
 }
