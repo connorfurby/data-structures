@@ -39,42 +39,53 @@ public class Driveway
       if (driveway.contains(licensePlate)) {
         System.out.println("Removed car with license plate " + licensePlate + " from the driveway.");
         Stack<Integer> temp = new Stack<Integer>();
-        while (!driveway.isEmpty() && driveway.peek() != licensePlate) {
-            temp.push(driveway.pop());
+        while (!driveway.isEmpty() && driveway.peek() != licensePlate) 
+        {
+          temp.push(driveway.pop());
         }
-        if (!driveway.isEmpty()) {
-            driveway.pop(); // Remove the requested car
+        if (!driveway.isEmpty()) 
+        {
+            driveway.pop();
         }
-        while (!temp.isEmpty()) {
+        while (!temp.isEmpty()) 
+        {
             street.push(temp.pop());
         }
-    } else if (street.contains(licensePlate)) {
+      } 
+
+      else if (street.contains(licensePlate)) {
         System.out.println("Removed car with license plate " + licensePlate + " from the street.");
         Stack<Integer> temp = new Stack<Integer>();
-        while (!street.isEmpty() && street.peek() != licensePlate) {
+        while (!street.isEmpty() && street.peek() != licensePlate) 
+        {
             temp.push(street.pop());
         }
-        if (!street.isEmpty()) {
-            street.pop(); // Remove the requested car
+        if (!street.isEmpty()) 
+        {
+            street.pop();
         }
-        while (!temp.isEmpty()) {
+        while (!temp.isEmpty()) 
+        {
             street.push(temp.pop());
         }
-    } else {
+      } 
+
+      else {
         System.out.println("Car with license plate " + licensePlate + " not found.");
     }
 }
-  }
 
     public void print()
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
+
         for (int i = 0; i < driveway.size(); i++) {
           int license = driveway.pop();
           System.out.println(license);
       }
 
         System.out.println("In Street, starting at first in (one license plate per line):");
+        
         for (int i = 0; i < street.size(); i++) {
           int license = street.pop();
           System.out.println(license);
