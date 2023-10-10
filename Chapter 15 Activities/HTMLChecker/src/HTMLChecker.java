@@ -17,12 +17,29 @@ public class HTMLChecker
 {
     public static void main(String[] args)
     {
-        String filename = "src/TagSample1.html";
+        String filename = "data-structures/Chapter 15 Activities/HTMLChecker/src/TagSample3.html";
+        Stack<String> theStack = new Stack<>();
 
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-            . . .
+            while (in.hasNext()) {
+                String str = in.next();
+                if (str.indexOf('/') == -1)
+                    theStack.push(str);
+                else {
+                    if (theStack.size() == 0) {
+                        System.out.println("There was an error.");
+                        return;
+                    }
+                    if (! theStack.pop().equals(str.replace("/", ""))) {
+                        System.out.println("There was an error.");
+                        return;
+                    }
+                }
+            }
+            if (theStack.size() != 0)
+                System.out.println("There was an error.");
 
 
         } catch (FileNotFoundException e)
