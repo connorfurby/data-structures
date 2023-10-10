@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ToDoList
 {
     // Instance variable(s)
-    . . .
+    PriorityQueue<Task> pqueue;
 
     /**
      * Constructor
@@ -20,7 +20,7 @@ public class ToDoList
     public ToDoList()
     {
         // Complete this
-        . . .
+        pqueue = new PriorityQueue();
     }
 
     /**
@@ -60,9 +60,25 @@ public class ToDoList
     public void addTask(String optionStr)
     {
         // Complete this method
-        . . .
-            
-            
+        int ord = -1;
+        String ctask = null;
+        Scanner scan = new Scanner(optionStr);
+        if (!scan.next().equals("add")) {
+            System.out.println("ERROR: 'add' command not found!");
+            return;
+        }
+        try {
+            ord = scan.nextInt();
+        }
+        catch (Exception e) {
+            System.out.println("ERROR: priority value not found!");
+        }
+        if (ord < 1 || ord > 9) {
+            System.out.println("ERROR: priority value not within designated range!");
+            return;
+        }
+        ctask = scan.nextLine().substring(1);
+        pqueue.offer(new Task(ord, ctask));     
     }
 
     /**
@@ -74,7 +90,6 @@ public class ToDoList
         Task next = null;
         
         // Complete this method
-        . . .
         
         
         if (next == null)
