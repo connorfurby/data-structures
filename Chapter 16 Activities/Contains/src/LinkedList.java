@@ -1,3 +1,4 @@
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -41,7 +42,16 @@ public class LinkedList
     */
     public boolean contains(Object obj)
     {
-        // ...
+        Node c = first;
+        while (c != null) 
+        {
+            if (c.data.equals(obj)) 
+            {
+                return true;
+            }
+            c = c.next;
+        }
+        return false;
     }
 
     /**

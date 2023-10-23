@@ -26,7 +26,12 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
+        Node c = first;
+        if (c == null) 
+        {
+            return 0;
+        }
+        return size(c);
     }
 
 

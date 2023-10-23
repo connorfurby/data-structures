@@ -41,7 +41,11 @@ public class LinkedList
     */
     public boolean contains(Object obj)
     {
-        // ...
+        if (first == null) 
+        {
+            return false;
+        }
+        return contains(first, obj);
     }
 
     /**
