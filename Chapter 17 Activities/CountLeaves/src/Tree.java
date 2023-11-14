@@ -64,4 +64,19 @@ public class Tree
     }
 
     // Additional methods will be added in later sections.
+    public int countLeaves()
+    {
+        return countLeaves(this.root);
+    }
+    public int countLeaves(Node currNode)
+    {
+        int leafamt = 0;
+         for (Node child : currNode.children) {
+                if (child.children.isEmpty())
+                    leafamt++;
+                else 
+                    leafamt += countLeaves(child);
+            }
+        return leafamt;
+    }
 }
