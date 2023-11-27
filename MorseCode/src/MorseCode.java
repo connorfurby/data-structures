@@ -100,10 +100,10 @@ public class MorseCode
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == ' ') {
                 morse.append(" ");
-            }
+            } 
 
             else {
-                Character currLetter = new Character(text.charAt(i));
+                char currLetter = text.charAt(i);
                 String currCode = codeMap.get(currLetter);
                 morse.append(currCode + " ");
             }

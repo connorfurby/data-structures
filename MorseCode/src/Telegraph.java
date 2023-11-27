@@ -73,7 +73,7 @@ public class Telegraph extends JFrame
     receivedText.setText(message);
   }
 
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(ActionEvent e) 
   {
     send(inputText.getText());
   }
